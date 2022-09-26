@@ -1,0 +1,12 @@
+@client.command()
+async def dm(ctx, user: discord.User, *, reason = None):
+ embed = discord.Embed(description = "🚀  Message sent!", colour = (0x8bc1a9))
+ await ctx.message.delete()
+ await ctx.send(embed=embed)
+ await user.send(reason)
+
+@dm.error
+async def dm_error(ctx, error):
+  if isinstance(error, commands.CommandError):
+    embed = discord.Embed(title="You're stupid 🤦‍♂️", description='make sure you do "odm <@member> <message>', colour=0x8bc1a9)
+    await ctx.send(embed=embed)
